@@ -1,10 +1,13 @@
 package com.sae.sc.activity;
 
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -15,6 +18,8 @@ import com.sae.sc.fragment.KeyboardFragment;
 import com.sae.sc.listener.KeyboardListener;
 import com.sae.sc.view.MathFormulaView;
 import com.sae.sc.view.ResizingEditText;
+
+import org.w3c.dom.Text;
 
 public class BasicCalculatorActivity extends AbstractCalculatorActivity
         implements KeyboardListener {
@@ -49,6 +54,14 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
      */
     ViewGroup mDisplayForeground;
 
+    /**
+     *
+     * @desc 监控输入框变化
+     */
+    @SuppressWarnings("未实现")
+    TextWatcher mTextWatcher = new CalculatorTextWatcher();
+
+
 
 
 
@@ -58,22 +71,40 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         setContentView(R.layout.activity_basic_calculator);
 
         initView();
-        hideSoftKeyboard();
+        initInputDisplay();
         initKeyboard();
-
     }
 
-    private void hideSoftKeyboard() {
-        final ResizingEditText inputView = (ResizingEditText) findViewById(R.id.txtDisplay);
+    private void initView() {
+        mWholePanelDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mInputDisplay = (ResizingEditText) findViewById(R.id.txtDisplay);
+        mMathView = (MathFormulaView) findViewById(R.id.math_view);
+        mDisplayForeground = (ViewGroup) findViewById(R.id.the_clear_animation);
+    }
+
+    private void initInputDisplay() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mInputDisplay.setShowSoftInputOnFocus(false);
+        }
         //关闭软键盘和光标
-        inputView.setInputType(InputType.TYPE_NULL);
+        mInputDisplay.setInputType(InputType.TYPE_NULL);
+        mInputDisplay.setFocusable(false);
+        mInputDisplay.setAutoSuggestEnable(false);
 
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(inputView.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(mInputDisplay.getWindowToken(), 0);
 
-        //禁止所有输入，只能通过按钮更改edittext
-        inputView.setFocusable(false);
+        mInputDisplay.addTextChangedListener(mTextWatcher);
     }
+
+    private void initKeyboard() {
+        Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
+        KeyboardFragment keyboardFragment = KeyboardFragment.newInstance();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container_keyboard, keyboardFragment, KeyboardFragment.TAG);
+        ft.commitAllowingStateLoss();
+    }
+
 
 
     @Override
@@ -96,17 +127,6 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     }
 
-    private void initView() {
-
-    }
-
-    private void initKeyboard() {
-        Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
-        KeyboardFragment keyboardFragment = KeyboardFragment.newInstance();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.container_keyboard, keyboardFragment, KeyboardFragment.TAG);
-        ft.commitAllowingStateLoss();
-    }
 
 
     @Override
@@ -133,5 +153,23 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     @Override
     public void clickClear() {
 
+    }
+
+    private class CalculatorTextWatcher implements TextWatcher {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
     }
 }
