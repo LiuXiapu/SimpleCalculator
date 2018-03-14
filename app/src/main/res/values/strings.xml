@@ -8,8 +8,10 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="advance">advance</string>
+
+    <string name="key_pref_latex_mode" translatable="false">key_pref_latex_mode</string>
+    <string name="mathjax" translatable="false">MathJax</string>
+    <string name="katex" translatable="false">KaTeX</string>
+
 </resources>
