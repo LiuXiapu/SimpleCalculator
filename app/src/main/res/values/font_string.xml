@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="font_black" translatable="false">Roboto Black</string>
+    <string name="font_bold" translatable="false">Roboto Bold</string>
+    <string name="font_italic" translatable="false">Roboto Italic</string>
+    <string name="font_light" translatable="false">Roboto Light</string>
+    <string name="font_thin" translatable="false">Roboto Thin</string>
+</resources>

@@ -8,6 +8,8 @@ import android.os.Build;
 import android.text.Html;
 import android.util.AttributeSet;
 
+import com.sae.sc.utils.FontManager;
+
 public class CalcButton extends android.support.v7.widget.AppCompatButton {
 
     public CalcButton(Context context) {
@@ -25,20 +27,12 @@ public class CalcButton extends android.support.v7.widget.AppCompatButton {
     public CalcButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        System.out.println(attrs);
-        System.out.println(defStyleAttr);
-
         setup(context);
 
     }
 
     private void setup(Context context) {
-        String path = "fonts/Roboto-Light.ttf";
-        AssetManager assetManager = context.getAssets();
-        Typeface typeface = Typeface.createFromAsset(assetManager, path);
-        setTypeface(typeface);
-
-        System.out.println("fdsfsafe");
+        setTypeface(FontManager.loadTypefaceFromAsset(context));
 
         String text = getText().toString();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
