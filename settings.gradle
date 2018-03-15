@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':symja_android_library-release'

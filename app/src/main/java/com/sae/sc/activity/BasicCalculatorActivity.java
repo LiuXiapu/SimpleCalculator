@@ -8,6 +8,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -16,11 +18,12 @@ import com.sae.sc.R;
 import com.sae.sc.activity.base.AbstractCalculatorActivity;
 import com.sae.sc.fragment.KeyboardFragment;
 import com.sae.sc.listener.KeyboardListener;
+import com.sae.sc.utils.Evaluator;
 import com.sae.sc.view.CalculatorEditText;
 import com.sae.sc.view.MathFormulaView;
 
 public class BasicCalculatorActivity extends AbstractCalculatorActivity
-        implements KeyboardListener {
+        implements KeyboardListener, View.OnKeyListener {
     public static final String TAG = BasicCalculatorActivity.class.getSimpleName();
 
     /**
@@ -56,8 +59,11 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
      * @desc 记录当前计算状态
      */
     CalculatorState mCalculatorState = CalculatorState.INPUT;
-
-
+    /**
+     *
+     *
+     */
+    Evaluator mEvaluator;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +83,9 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
         mInputDisplay.setText(null);
         mMathView.setText(null);
+
+        //实时计算输入的结果
+        mInputDisplay.setOnKeyListener(this);
     }
 
     private void initInputDisplay() {
@@ -102,31 +111,27 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     @Override
     public void onInsert(String text) {
         if (mCalculatorState == CalculatorState.ERROR || mCalculatorState == CalculatorState.RESULT) {
-            mCalculatorState = CalculatorState.INPUT;
+            setState(CalculatorState.INPUT);
             mInputDisplay.clear();
         }
         mInputDisplay.insert(text);
-
-        Toast.makeText(this, "结果panel功能未实现", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDelete() {
         mInputDisplay.backspace();
-
-        Toast.makeText(this, "结果panel功能未实现", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClear() {
         mInputDisplay.clear();
-        Toast.makeText(this, "动画清除", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onEqual() {
-        Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
+        String text = mInputDisplay.getCleanText();
+        setState(CalculatorState.EVALUATE);
     }
 
     @Override
@@ -134,8 +139,26 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            //小键盘
+            case KeyEvent.KEYCODE_NUMPAD_ENTER:
+            case KeyEvent.KEYCODE_ENTER:
+                //松开按钮
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onEqual();
+                }
+                return true;
+        }
+        return false;
+    }
+
+    private void setState(CalculatorState state) {
+        mCalculatorState = state;
+    }
 
     public enum CalculatorState {
-        INPUT, RESULT, ERROR
+        INPUT, RESULT, ERROR, EVALUATE
     }
 }
