@@ -23,7 +23,7 @@ import com.sae.sc.view.CalculatorEditText;
 import com.sae.sc.view.MathFormulaView;
 
 public class BasicCalculatorActivity extends AbstractCalculatorActivity
-        implements KeyboardListener, View.OnKeyListener {
+        implements KeyboardListener, View.OnKeyListener, Evaluator.EvaluateCallback {
     public static final String TAG = BasicCalculatorActivity.class.getSimpleName();
 
     /**
@@ -132,6 +132,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     public void onEqual() {
         String text = mInputDisplay.getCleanText();
         setState(CalculatorState.EVALUATE);
+
+        //mEvaluator.evaluate(text, BasicCalculatorActivity.this);
     }
 
     @Override
@@ -156,6 +158,40 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     private void setState(CalculatorState state) {
         mCalculatorState = state;
+    }
+
+    @Override
+    public void onEvaluated(String expr, String result, int errorResourceId) {
+        if (errorResourceId == RESULT_OK) {
+            if (mCalculatorState == CalculatorState.EVALUATE) {
+                onResult(result);
+            } else if (mCalculatorState == CalculatorState.INPUT) {
+                if (result == null) {
+                    mMathView.setText("");
+                } else {
+                    mMathView.setText(result);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onCalculateError(Exception e) {
+        if (mCalculatorState == CalculatorState.INPUT) {
+            mMathView.setText("");
+        } else if (mCalculatorState == CalculatorState.EVALUATE) {
+            onError("Error: " + e.getMessage());
+        }
+    }
+
+    public void onResult(final String result) {
+        mInputDisplay.post(new Runnable() {
+            @Override
+            public void run() {
+                mInputDisplay.setText(result.replace("\\", "").replace("\n", ""));
+            }
+        });
+        mMathView.setText("");
     }
 
     public enum CalculatorState {
