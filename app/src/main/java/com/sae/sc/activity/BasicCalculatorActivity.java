@@ -70,6 +70,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_calculator);
 
+        mEvaluator = Evaluator.newInstance();
+
         initView();
         initInputDisplay();
         initKeyboard();
@@ -131,9 +133,10 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     @Override
     public void onEqual() {
         String text = mInputDisplay.getCleanText();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         setState(CalculatorState.EVALUATE);
 
-        //mEvaluator.evaluate(text, BasicCalculatorActivity.this);
+        mEvaluator.evaluate(text, BasicCalculatorActivity.this);
     }
 
     @Override
@@ -162,10 +165,16 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     @Override
     public void onEvaluated(String expr, String result, int errorResourceId) {
+        System.out.println(errorResourceId);
+        System.out.println(RESULT_OK);
         if (errorResourceId == RESULT_OK) {
+            System.out.println(mCalculatorState.name());
+
             if (mCalculatorState == CalculatorState.EVALUATE) {
+                System.out.println(1);
                 onResult(result);
             } else if (mCalculatorState == CalculatorState.INPUT) {
+                System.out.println(2);
                 if (result == null) {
                     mMathView.setText("");
                 } else {
@@ -185,13 +194,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     }
 
     public void onResult(final String result) {
-        mInputDisplay.post(new Runnable() {
-            @Override
-            public void run() {
-                mInputDisplay.setText(result.replace("\\", "").replace("\n", ""));
-            }
-        });
-        mMathView.setText("");
+        mMathView.setText(result);
     }
 
     public enum CalculatorState {
