@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sae.sc.view;
+package com.sae.sc.view.base;
 
 import android.content.Context;
 import android.content.res.TypedArray;

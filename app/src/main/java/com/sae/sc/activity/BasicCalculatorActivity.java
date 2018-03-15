@@ -10,16 +10,13 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.sae.sc.R;
 import com.sae.sc.activity.base.AbstractCalculatorActivity;
 import com.sae.sc.fragment.KeyboardFragment;
 import com.sae.sc.listener.KeyboardListener;
+import com.sae.sc.view.CalculatorEditText;
 import com.sae.sc.view.MathFormulaView;
-import com.sae.sc.view.ResizingEditText;
-
-import org.w3c.dom.Text;
 
 public class BasicCalculatorActivity extends AbstractCalculatorActivity
         implements KeyboardListener {
@@ -38,7 +35,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
      *  @id txtDisplay
      *  @desc 多重嵌套，为输入框，禁止软键盘与PC键盘输入；不显示光标，只有通过click事件改变text
      */
-    ResizingEditText mInputDisplay;
+    CalculatorEditText mInputDisplay;
     /**
      *
      *  @location activity_basic_calculator -->  abs_bar_content -> abs_content -> display_panel
@@ -53,13 +50,17 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
      *  @desc 暂定为动画背景的view
      */
     ViewGroup mDisplayForeground;
-
     /**
      *
      * @desc 监控输入框变化
      */
     @SuppressWarnings("未实现")
     TextWatcher mTextWatcher = new CalculatorTextWatcher();
+    /**
+     *
+     * @desc 记录当前计算状态
+     */
+    CalculatorState mCalculatorState = CalculatorState.INPUT;
 
 
 
@@ -75,9 +76,12 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     private void initView() {
         mWholePanelDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mInputDisplay = (ResizingEditText) findViewById(R.id.txtDisplay);
+        mInputDisplay = (CalculatorEditText) findViewById(R.id.txtDisplay);
         mMathView = (MathFormulaView) findViewById(R.id.math_view);
         mDisplayForeground = (ViewGroup) findViewById(R.id.the_clear_animation);
+
+        mInputDisplay.setText(null);
+        mMathView.setText(null);
     }
 
     private void initInputDisplay() {
@@ -104,27 +108,14 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     @Override
     public void insertText(String text) {
+        String currentText = mInputDisplay.getCleanText();
 
-    }
-
-    @Override
-    public void onDefineAndCalc() {
-
-    }
-
-    @Override
-    public void clickFactorPrime() {
-
-    }
-
-    @Override
-    public void closeMathView() {
-
-    }
-
-    @Override
-    public void shareText() {
-
+        if (mCalculatorState == CalculatorState.INPUT) {
+            mInputDisplay.setText(currentText + text);
+        } else if (mCalculatorState == CalculatorState.ERROR || mCalculatorState == CalculatorState.RESULT) {
+            mInputDisplay.setText(text);
+            mCalculatorState = CalculatorState.INPUT;
+        }
     }
 
     @Override
@@ -133,22 +124,12 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     }
 
     @Override
-    public void clickClear() {
+    public void onClear() {
 
     }
 
     @Override
     public void onEqual() {
-
-    }
-
-    @Override
-    public void insertOperator(String op) {
-
-    }
-
-    @Override
-    public void onResult(String result) {
 
     }
 
@@ -178,5 +159,9 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         public void afterTextChanged(Editable s) {
 
         }
+    }
+
+    public enum CalculatorState {
+        INPUT, RESULT, ERROR;
     }
 }

@@ -11,143 +11,144 @@
         android:layout_height="0dp"
         android:layout_weight="250"
         android:background="@color/background_pad_numberic"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:weightSum="400">
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="100"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:orientation="vertical"
+            android:weightSum="4">
 
             <com.sae.sc.view.CalcButton
                 android:id="@+id/digit7"
                 style="?buttonDigitStyle"
-                android:text="@string/digit7" />
+                android:text="@string/digit7"
+                android:layout_width="match_parent" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit4"
+                style="?buttonDigitStyle"
+                android:text="@string/digit4"
+                android:layout_width="match_parent"/>
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit1"
+                style="?buttonDigitStyle"
+                android:text="@string/digit1"
+                android:layout_width="match_parent"/>
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/btn_dot"
+                style="?buttonSmallDigitStyle"
+                android:text="@string/dot"
+                android:layout_width="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:orientation="vertical"
+            android:weightSum="4">
 
             <com.sae.sc.view.CalcButton
                 android:id="@+id/digit8"
                 style="?buttonDigitStyle"
-                android:text="@string/digit8" />
+                android:text="@string/digit8"
+                android:layout_width="match_parent" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit5"
+                style="?buttonDigitStyle"
+                android:text="@string/digit5"
+                android:layout_width="match_parent"/>
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit2"
+                style="?buttonDigitStyle"
+                android:text="@string/digit2"
+                android:layout_width="match_parent"/>
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit0"
+                style="?buttonDigitStyle"
+                android:text="@string/digit0"
+                android:layout_width="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:orientation="vertical"
+            android:weightSum="4">
 
             <com.sae.sc.view.CalcButton
                 android:id="@+id/digit9"
                 style="?buttonDigitStyle"
-                android:text="@string/digit9" />
+                android:text="@string/digit9"
+                android:layout_width="match_parent"/>
 
             <com.sae.sc.view.CalcButton
-                android:id="@+id/btn_clear"
-                style="?buttonClearStyle"
-                android:text="@string/clear" />
+                android:id="@+id/digit6"
+                style="?buttonDigitStyle"
+                android:text="@string/digit6"
+                android:layout_width="match_parent"/>
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit3"
+                style="?buttonDigitStyle"
+                android:text="@string/digit3"
+                android:layout_width="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_delete"
                 style="?buttonClearStyle"
                 android:contentDescription="@string/delete"
                 android:text="@string/delete"
-                app:srcCompat="@drawable/ic_backspace_white_24dp" />
+                app:srcCompat="@drawable/ic_backspace_white_24dp"
+                android:layout_width="match_parent"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="100"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:weightSum="5">
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/digit4"
-                style="?buttonDigitStyle"
-                android:text="@string/digit4" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/digit5"
-                style="?buttonDigitStyle"
-                android:text="@string/digit5" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/digit6"
-                style="?buttonDigitStyle"
-                android:text="@string/digit6" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/btn_mul"
-                style="?buttonOptStyle"
-                android:text="@string/mul" />
 
             <com.sae.sc.view.CalcButton
                 android:id="@+id/btn_div"
                 style="?buttonOptStyle"
-                android:text="@string/div" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="100"
-            android:orientation="horizontal"
-            android:weightSum="5">
+                android:text="@string/div"
+                android:layout_width="match_parent"/>
 
             <com.sae.sc.view.CalcButton
-                android:id="@+id/digit1"
-                style="?buttonDigitStyle"
-                android:text="@string/digit1" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/digit2"
-                style="?buttonDigitStyle"
-                android:text="@string/digit2" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/digit3"
-                style="?buttonDigitStyle"
-                android:text="@string/digit3" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/btn_plus"
+                android:id="@+id/btn_mul"
                 style="?buttonOptStyle"
-                android:text="@string/plus" />
+                android:layout_width="match_parent"
+                android:text="@string/mul" />
 
             <com.sae.sc.view.CalcButton
                 android:id="@+id/btn_minus"
                 style="?buttonOptStyle"
-                android:text="@string/minus" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="100"
-            android:orientation="horizontal"
-            android:weightSum="5">
+                android:text="@string/minus"
+                android:layout_width="match_parent"/>
 
             <com.sae.sc.view.CalcButton
-                android:id="@+id/digit0"
-                style="?buttonDigitStyle"
-                android:text="@string/digit0" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/btn_dot"
-                style="?buttonSmallDigitStyle"
-                android:text="@string/dot" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/btn_pi"
-                style="?buttonSmallDigitStyle"
-                android:text="@string/pi_symbol" />
-
-            <com.sae.sc.view.CalcButton
-                android:id="@+id/btn_ans"
-                style="?buttonSmallDigitStyle"
-                android:text="@string/ans" />
-
+                android:id="@+id/btn_plus"
+                style="?buttonOptStyle"
+                android:text="@string/plus"
+                android:layout_width="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_equal"
                 style="?imageButtonStyle"
-                android:src="@drawable/ic_equal" />
+                android:src="@drawable/ic_equal"
+                android:layout_width="match_parent"/>
 
 
         </LinearLayout>

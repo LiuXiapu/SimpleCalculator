@@ -18,7 +18,6 @@ import com.sae.sc.data.ButtonID;
 import com.sae.sc.listener.KeyboardListener;
 import com.sae.sc.view.CalcButton;
 
-import java.sql.SQLOutput;
 
 public class KeyboardFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
     public static final String TAG = "KeyboardFragment";
@@ -47,7 +46,6 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i("lxp", "KeyboardFragment                lxp ");
         addEvent(view);
     }
 
@@ -56,6 +54,7 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
         for (int id : ButtonID.getIdBasic()) {
             try {
                 View v = view.findViewById(id);
+
                 if (v != null) {
                     v.setOnClickListener(this);
                     v.setOnLongClickListener(this);
@@ -99,14 +98,20 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
-    @SuppressWarnings("UnCompleted")
     public void onClick(View view) {
         if (mListener == null) {
             return;
         }
 
         switch (view.getId()) {
-            case 0:
+            case R.id.btn_delete:
+                //Toast.makeText(getActivity(), "删除", Toast.LENGTH_SHORT).show();
+                mListener.onDelete();
+                break;
+            case R.id.btn_equal:
+                //Toast.makeText(getActivity(), "求解", Toast.LENGTH_SHORT).show();
+                mListener.onEqual();
+                break;
             default:
                 if (view instanceof CalcButton) {
                     CalcButton calcButton = (CalcButton) view;
@@ -117,7 +122,7 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
                         mListener.insertText(((Button) view).getText().toString());
                     }
 
-                    Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

@@ -19,7 +19,7 @@
             android:orientation="vertical"
             android:weightSum="100">
 
-            <com.sae.sc.view.ResizingEditText
+            <com.sae.sc.view.CalculatorEditText
                 android:id="@+id/txtDisplay"
                 style="@style/AppTheme.EditText.Formula"
                 android:layout_width="match_parent"
@@ -29,7 +29,6 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical"
                 android:textSize="30sp"
-                android:text="123+5/233"
                 tools:text="1+1+3+4+5/12312" />
 
             <com.sae.sc.view.MathFormulaView

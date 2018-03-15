@@ -12,6 +12,16 @@ public class ButtonID {
                 R.id.digit4, R.id.digit5,
                 R.id.digit6, R.id.digit7,
                 R.id.digit8, R.id.digit9,
+
+                R.id.btn_mul,
+                R.id.btn_div,
+                R.id.btn_plus,
+                R.id.btn_minus,
+                R.id.btn_dot,
+                R.id.btn_delete,
+
+                R.id.btn_equal,
+
                 /**
                 R.id.btn_clear,
                 R.id.btn_delete,
