@@ -18,7 +18,7 @@ public abstract class AbstractCalculatorActivity extends AbstractNavDrawerActivi
      * use only for  calculator (base, science, complex)
      *
      * @param s - text
-     */
+     *
     public abstract void insertText(String s);
 
     /**
@@ -26,7 +26,7 @@ public abstract class AbstractCalculatorActivity extends AbstractNavDrawerActivi
      * not clear display
      *
      * @param s - operator
-     */
+     *
     public abstract void insertOperator(String s);
 
     /**
@@ -35,7 +35,7 @@ public abstract class AbstractCalculatorActivity extends AbstractNavDrawerActivi
      * use only for  calculator (base, science, complex)
      *
      * @return - string text input
-     */
+     *
     public abstract String getTextClean();
 
 
@@ -51,6 +51,7 @@ public abstract class AbstractCalculatorActivity extends AbstractNavDrawerActivi
      * set text for linear eval
      *
      * @param text - string input
-     */
+     *
     public abstract void setTextDisplay(String text);
+    */
 }

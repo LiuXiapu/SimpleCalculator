@@ -6,13 +6,13 @@ import com.sae.sc.R;
 public class ButtonID {
     public static int[] getIdBasic() {
         final int[] ID_BUTTON = {
-                /*
+
                 R.id.digit0, R.id.digit1,
-                R.id.digit2,
-                R.id.digit3, R.id.digit4,
-                R.id.digit5, R.id.digit6,
-                R.id.digit7, R.id.digit8,
-                R.id.digit9,
+                R.id.digit2, R.id.digit3,
+                R.id.digit4, R.id.digit5,
+                R.id.digit6, R.id.digit7,
+                R.id.digit8, R.id.digit9,
+                /**
                 R.id.btn_clear,
                 R.id.btn_delete,
                 R.id.btn_mul,
@@ -81,6 +81,7 @@ public class ButtonID {
                 R.id.btn_ten_power, R.id.btn_var_e, R.id.btn_percent,
                 R.id.btn_derivative
                 */
+
         };
         return ID_BUTTON;
     }

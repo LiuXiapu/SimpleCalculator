@@ -5,14 +5,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 import com.sae.sc.R;
 import com.sae.sc.data.ButtonID;
 import com.sae.sc.listener.KeyboardListener;
+import com.sae.sc.view.CalcButton;
+
+import java.sql.SQLOutput;
 
 public class KeyboardFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
     public static final String TAG = "KeyboardFragment";
@@ -31,7 +37,6 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,10 +47,11 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //addEvent(view);
+        Log.i("lxp", "KeyboardFragment                lxp ");
+        addEvent(view);
     }
 
-    /*
+
     private void addEvent(View view) {
         for (int id : ButtonID.getIdBasic()) {
             try {
@@ -73,9 +79,10 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
             }
         }
     }
-    */
+
 
     @Override
+    @SuppressWarnings("UnCompleted")
     public boolean onLongClick(View view) {
         /*
         if (mListener == null) {
@@ -92,12 +99,28 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
+    @SuppressWarnings("UnCompleted")
     public void onClick(View view) {
         if (mListener == null) {
             return;
         }
 
-        System.out.println("test");
+        switch (view.getId()) {
+            case 0:
+            default:
+                if (view instanceof CalcButton) {
+                    CalcButton calcButton = (CalcButton) view;
+                    String text = calcButton.getText().toString();
+                    if (text.length() >= 2) {
+                        mListener.insertText(text + "(");
+                    } else {
+                        mListener.insertText(((Button) view).getText().toString());
+                    }
+
+                    Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 
     @Override

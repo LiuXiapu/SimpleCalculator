@@ -63,8 +63,6 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
 
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,36 +96,56 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     }
 
     private void initKeyboard() {
-        Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
         KeyboardFragment keyboardFragment = KeyboardFragment.newInstance();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container_keyboard, keyboardFragment, KeyboardFragment.TAG);
         ft.commitAllowingStateLoss();
     }
 
-
-
     @Override
-    public void insertText(String s) {
+    public void insertText(String text) {
 
     }
 
     @Override
-    public void insertOperator(String s) {
+    public void onDefineAndCalc() {
 
     }
 
     @Override
-    public String getTextClean() {
-        return null;
+    public void clickFactorPrime() {
+
     }
 
     @Override
-    public void setTextDisplay(String text) {
+    public void closeMathView() {
 
     }
 
+    @Override
+    public void shareText() {
 
+    }
+
+    @Override
+    public void onDelete() {
+
+    }
+
+    @Override
+    public void clickClear() {
+
+    }
+
+    @Override
+    public void onEqual() {
+
+    }
+
+    @Override
+    public void insertOperator(String op) {
+
+    }
 
     @Override
     public void onResult(String result) {
@@ -139,22 +157,11 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     }
 
-    @Override
-    public void onDelete() {
 
-    }
-
-
-    @Override
-    public void onEqual() {
-
-    }
-
-    @Override
-    public void clickClear() {
-
-    }
-
+    /**
+     *
+     *  输入框监听 Listener
+     */
     private class CalculatorTextWatcher implements TextWatcher {
 
         @Override
