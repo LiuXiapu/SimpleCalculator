@@ -83,18 +83,15 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
     @Override
     @SuppressWarnings("UnCompleted")
     public boolean onLongClick(View view) {
-        /*
         if (mListener == null) {
             return false;
         }
         switch (view.getId()) {
             case R.id.btn_delete:
-                mListener.clickClear();
+                mListener.onClear();
                 return true;
         }
         return false;
-        */
-        return true;
     }
 
     @Override
@@ -105,11 +102,9 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
 
         switch (view.getId()) {
             case R.id.btn_delete:
-                //Toast.makeText(getActivity(), "删除", Toast.LENGTH_SHORT).show();
                 mListener.onDelete();
                 break;
             case R.id.btn_equal:
-                //Toast.makeText(getActivity(), "求解", Toast.LENGTH_SHORT).show();
                 mListener.onEqual();
                 break;
             default:
@@ -117,12 +112,10 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
                     CalcButton calcButton = (CalcButton) view;
                     String text = calcButton.getText().toString();
                     if (text.length() >= 2) {
-                        mListener.insertText(text + "(");
+                        mListener.onInsert(text + "(");
                     } else {
-                        mListener.insertText(((Button) view).getText().toString());
+                        mListener.onInsert(((Button) view).getText().toString());
                     }
-
-                    //Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

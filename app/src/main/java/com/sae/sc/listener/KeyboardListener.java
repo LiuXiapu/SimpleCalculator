@@ -1,7 +1,7 @@
 package com.sae.sc.listener;
 
 public interface KeyboardListener {
-    void insertText(String text);
+    void onInsert(String text);
 
     void onDelete();
 

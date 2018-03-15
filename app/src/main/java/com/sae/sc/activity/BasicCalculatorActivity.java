@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.sae.sc.R;
 import com.sae.sc.activity.base.AbstractCalculatorActivity;
@@ -52,12 +53,6 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     ViewGroup mDisplayForeground;
     /**
      *
-     * @desc 监控输入框变化
-     */
-    @SuppressWarnings("未实现")
-    TextWatcher mTextWatcher = new CalculatorTextWatcher();
-    /**
-     *
      * @desc 记录当前计算状态
      */
     CalculatorState mCalculatorState = CalculatorState.INPUT;
@@ -95,8 +90,6 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mInputDisplay.getWindowToken(), 0);
-
-        mInputDisplay.addTextChangedListener(mTextWatcher);
     }
 
     private void initKeyboard() {
@@ -107,61 +100,42 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     }
 
     @Override
-    public void insertText(String text) {
-        String currentText = mInputDisplay.getCleanText();
-
-        if (mCalculatorState == CalculatorState.INPUT) {
-            mInputDisplay.setText(currentText + text);
-        } else if (mCalculatorState == CalculatorState.ERROR || mCalculatorState == CalculatorState.RESULT) {
-            mInputDisplay.setText(text);
+    public void onInsert(String text) {
+        if (mCalculatorState == CalculatorState.ERROR || mCalculatorState == CalculatorState.RESULT) {
             mCalculatorState = CalculatorState.INPUT;
+            mInputDisplay.clear();
         }
+        mInputDisplay.insert(text);
+
+        Toast.makeText(this, "结果panel功能未实现", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDelete() {
+        mInputDisplay.backspace();
 
+        Toast.makeText(this, "结果panel功能未实现", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClear() {
+        mInputDisplay.clear();
+        Toast.makeText(this, "动画清除", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onEqual() {
-
+        Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onError(String errorResourceId) {
-
+        Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
     }
 
-
-    /**
-     *
-     *  输入框监听 Listener
-     */
-    private class CalculatorTextWatcher implements TextWatcher {
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    }
 
     public enum CalculatorState {
-        INPUT, RESULT, ERROR;
+        INPUT, RESULT, ERROR
     }
 }
