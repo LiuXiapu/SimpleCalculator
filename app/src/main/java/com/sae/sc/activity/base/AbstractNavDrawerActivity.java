@@ -11,8 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.sae.sc.R;
+import com.sae.sc.activity.BasicCalculatorActivity;
+import com.sae.sc.activity.KancolleActivity;
 
 public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +34,8 @@ public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivit
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setCheckedItem(R.id.nav_calculator);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,12 +51,18 @@ public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivit
         int id = item.getItemId();
         Intent intent;
 
-        if (id == R.id.nav_calculator) {
-            // Handle the camera action
-        } else if (id == R.id.nav_kancolle) {
-
-        } else if (id == R.id.nav_about) {
-
+        switch (id) {
+            case R.id.nav_calculator:
+                intent = new Intent(getApplicationContext(), BasicCalculatorActivity.class);
+                startIntent(intent);
+                break;
+            case R.id.nav_kancolle:
+                intent = new Intent(getApplicationContext(), KancolleActivity.class);
+                startIntent(intent);
+                break;
+            case R.id.nav_about:
+                Toast.makeText(this, "目前为空", Toast.LENGTH_SHORT).show();
+                break;
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);

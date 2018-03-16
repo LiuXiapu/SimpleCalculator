@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
@@ -316,6 +317,14 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     public void afterTextChanged(Editable s) {
         onEqual();
         setState(CalculatorState.INPUT);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_calculator);
     }
 
     public enum CalculatorState {

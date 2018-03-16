@@ -16,9 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-7
-        <activity android:name=".activity.BasicCalculatorActivity">
-        </activity>
+
+        <activity android:name=".activity.BasicCalculatorActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity android:name=".activity.KancolleActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>
