@@ -65,6 +65,8 @@ public class KancolleActivity extends AbstractNavDrawerActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kancolle);
 
+        this.setTitle(R.string.kancolle_title);
+
         initData();
         initView();
     }

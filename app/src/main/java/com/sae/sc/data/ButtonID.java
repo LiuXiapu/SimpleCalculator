@@ -34,7 +34,6 @@ public class ButtonID {
                 R.id.btn_exp,
 
                 R.id.btn_log,
-                R.id.btn_factorial,
                 R.id.btn_sqrt,
 
                 R.id.btn_left_paratheses,

@@ -89,6 +89,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
         mEvaluator = Evaluator.newInstance(this);
 
+        setTitle(R.string.calculator_title);
+
         initView();
         initInputDisplay();
         initKeyboard();
@@ -179,7 +181,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     @Override
     public void onEqual(boolean isPressEqual) {
-        isEqualPressed  = isPressEqual;
+        isEqualPressed = isPressEqual;
 
         Log.i("main", "onEqual()");
         String text = mInputDisplay.getCleanText();
@@ -234,9 +236,12 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     @Override
     public void onCalculateError(String errorString) {
+        if (! isEqualPressed) {
+            mMathView.setText("");
+        }
         if (mCalculatorState == CalculatorState.INPUT) {
             mMathView.setText("");
-        } else if (mCalculatorState == CalculatorState.EVALUATE) {
+        } else if (mCalculatorState == CalculatorState.EVALUATE && isEqualPressed) {
             onError(errorString);
         }
     }

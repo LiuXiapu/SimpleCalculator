@@ -1,6 +1,7 @@
 package com.sae.sc.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.sae.sc.R;
 
@@ -68,6 +69,8 @@ public class Resolver {
         );
     }
 
+    private int addParenNum = 0;
+
 
     /**
      *
@@ -88,7 +91,280 @@ public class Resolver {
         elements = addZeroAndMulOp(elements);
         printList(elements);
 
-        return "Error";
+        boolean isCorrect = syntaxElements(elements);
+        System.out.println(isCorrect);
+
+        if (isCorrect) {
+            try {
+                elements = addParen(elements);
+                printList(elements);
+                return tryCalculate(elements);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.w("cal", e.getMessage());
+                return "Error: Calculate Error. " + e.getMessage();
+            }
+        } else {
+            return "Error: Syntax Failed. Wrong Format.";
+        }
+    }
+
+    private String tryCalculate(List<String> elements) throws Exception {
+        List<Object> parsedElements = new LinkedList<>();
+        for (String element: elements) {
+            if (isNumberLike(element)) {
+                parsedElements.add(Double.parseDouble(element));
+            } else {
+                parsedElements.add(element);
+            }
+        }
+
+        printList(parsedElements);
+
+        double result = calculateInner(parsedElements);
+
+        return Double.toString(result);
+    }
+
+    private Double calculateInner(List<Object> elements) throws Exception {
+        // 去括号
+        List<Object> elementsWithoutParen = new LinkedList<>();
+        for (int i = 0; i < elements.size(); ) {
+            Object nowElement = elements.get(i);
+
+            // 递归 寻找配对括号
+            if (nowElement.equals("(")) {
+                int leftCount = 1;
+                for (int j = i + 1; j < elements.size(); ++ j) {
+                    if (elements.get(j).equals("(")) {
+                        ++ leftCount;
+                    } else if (elements.get(j).equals(")")) {
+                        if (-- leftCount == 0) {
+                            List<Object> subList = elements.subList(i + 1, j);
+                            double subResult = calculateInner(subList);
+                            elementsWithoutParen.add(subResult);
+
+                            i = j + 1;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                elementsWithoutParen.add(nowElement);
+                ++ i;
+            }
+        }
+
+        // 去常数
+        List<Object> elementsWithoutConstant = new LinkedList<>();
+        for (int i = 0; i < elementsWithoutParen.size(); ++ i) {
+            Object nowElement = elementsWithoutParen.get(i);
+            if (nowElement instanceof String && isConstant((String) nowElement)) {
+                elementsWithoutConstant.add(getConstantValue((String) nowElement));
+            } else {
+                elementsWithoutConstant.add(nowElement);
+            }
+        }
+
+        // 去函数
+        List<Object> elementsWithoutFunc = new LinkedList<>();
+        for (int i = 0; i < elementsWithoutConstant.size(); ++ i) {
+            Object nowElement = elementsWithoutConstant.get(i);
+            if (nowElement instanceof String && isFunction((String) nowElement)) {
+                Object nextElement = elementsWithoutParen.get(i + 1);
+                if (nextElement instanceof Double) {
+                    elementsWithoutFunc.add(getFunctionResult((String) nowElement, (double) nextElement));
+                    ++ i;
+                } else {
+                    throw new Exception("unrecognized number: " + nextElement);
+                }
+            } else {
+                elementsWithoutFunc.add(nowElement);
+            }
+        }
+
+        // pow 乘方
+        for (int i = 1; i < elementsWithoutFunc.size() - 1; ) {
+            Object nowElement = elementsWithoutFunc.get(i);
+            if (nowElement instanceof String && ((String) nowElement).equals(context.getString(R.string.power))) {
+                Object leftElement = elementsWithoutFunc.get(i - 1);
+                Object rightElement = elementsWithoutFunc.get(i + 1);
+                if (leftElement instanceof Double && rightElement instanceof Double) {
+                    double result = Math.pow((double) leftElement, (double) rightElement);
+
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.add(i - 1, result);
+                } else {
+                    throw new Exception("unrecognized number: " + leftElement + ", " + rightElement);
+                }
+            } else {
+                ++ i;
+            }
+        }
+
+        // 乘除
+        for (int i = 1; i < elementsWithoutFunc.size() - 1; ) {
+            Object nowElement = elementsWithoutFunc.get(i);
+            if (nowElement instanceof String &&
+                    (((String) nowElement).equals(context.getString(R.string.mul))
+                    || ((String) nowElement).equals(context.getString(R.string.div)))) {
+                Object leftElement = elementsWithoutFunc.get(i - 1);
+                Object rightElement = elementsWithoutFunc.get(i + 1);
+                if (leftElement instanceof Double && rightElement instanceof Double) {
+                    double result;
+                    if (((String) nowElement).equals(context.getString(R.string.mul))) {
+                        result = (double) leftElement * (double) rightElement;
+                    } else {
+                        result = (double) leftElement / (double) rightElement;
+                    }
+
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.add(i - 1, result);
+                } else {
+                    throw new Exception("unrecognized number: " + leftElement + ", " + rightElement);
+                }
+            } else {
+                ++ i;
+            }
+        }
+
+        // 加减
+        for (int i = 1; i < elementsWithoutFunc.size() - 1; ) {
+            Object nowElement = elementsWithoutFunc.get(i);
+            if (nowElement instanceof String &&
+                    (((String) nowElement).equals(context.getString(R.string.plus))
+                            || ((String) nowElement).equals(context.getString(R.string.minus)))) {
+                Object leftElement = elementsWithoutFunc.get(i - 1);
+                Object rightElement = elementsWithoutFunc.get(i + 1);
+                if (leftElement instanceof Double && rightElement instanceof Double) {
+                    double result;
+                    if (((String) nowElement).equals(context.getString(R.string.plus))) {
+                        result = (double) leftElement + (double) rightElement;
+                    } else {
+                        result = (double) leftElement - (double) rightElement;
+                    }
+
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.remove(i - 1);
+                    elementsWithoutFunc.add(i - 1, result);
+                } else {
+                    throw new Exception("unrecognized number: " + leftElement + ", " + rightElement);
+                }
+            } else {
+                ++ i;
+            }
+        }
+
+        System.out.println("length = " + elementsWithoutFunc.size());
+        return (double) elementsWithoutFunc.get(0);
+    }
+
+    private double getFunctionResult(String funcName, double number) throws Exception {
+        if (funcName.equals(context.getString(R.string.sin))) {
+            return Math.sin(number);
+        } else if (funcName.equals(context.getString(R.string.cos))) {
+            return Math.cos(number);
+        } else if (funcName.equals(context.getString(R.string.tan))) {
+            return Math.tan(number);
+        } else if (funcName.equals(context.getString(R.string.arcsin))) {
+            return Math.asin(number);
+        } else if (funcName.equals(context.getString(R.string.arccos))) {
+            return Math.acos(number);
+        } else if (funcName.equals(context.getString(R.string.arctan))) {
+            return Math.atan(number);
+        } else if (funcName.equals(context.getString(R.string.fun_ln))) {
+            return Math.log(number);
+        } else if (funcName.equals(context.getString(R.string.exp))) {
+            return Math.exp(number);
+        } else if (funcName.equals(context.getString(R.string.log10))) {
+            return Math.log10(number);
+        } else if (funcName.equals(context.getString(R.string.sqrt_sym))) {
+            return Math.sqrt(number);
+        } else {
+            throw new Exception("unrecognized function: " + funcName);
+        }
+    }
+
+    private double getConstantValue(String expr) throws Exception{
+        if (expr.equals(context.getString(R.string.constant_e))) {
+            return Math.E;
+        } else if (expr.equals(context.getString(R.string.pi_symbol))) {
+            return Math.PI;
+        } else {
+            throw new Exception("unrecognized constant: " + expr);
+        }
+    }
+
+    private List<String> addParen(List<String> elements) {
+        while (addParenNum -- > 0) {
+            elements.add(")");
+        }
+        return elements;
+    }
+
+    // 三种错误 括号不匹配 连续符号 数字错误
+    private boolean syntaxElements(List<String> elements) {
+        //左括号-右括号
+        int leftMinusRight = 0;
+
+        for (int i = 0; i < elements.size() - 1; ++ i) {
+            String nowElement = elements.get(i);
+            String rightElement = elements.get(i + 1);
+
+            if (nowElement.equals("(")) {
+                ++ leftMinusRight;
+
+                if (rightElement.equals(")")) {
+                    return false;               // () 空串
+                }
+
+            } else if (nowElement.equals(")")) {
+                -- leftMinusRight;
+
+                if (leftMinusRight < 0) {
+                    return false;               // 右括号大于左括号 ()) ))(
+                }
+            } else if (isOperator(nowElement)) {
+                if (isOperator(rightElement)) {
+                    return false;                   // 连续运算符
+                }
+                if (rightElement.equals(")")) {
+                    return false;                   // 符号  )
+                }
+                if (i > 0) {
+                    String leftElement = elements.get(i - 1);
+                    if (leftElement.equals("(")) {
+                        return false;               // ( 符号
+                    }
+                }
+            } else if (isNumberLike(nowElement) && ! isNumber(nowElement)) {
+                return false;                   // 数字格式错误(小数点)
+            }
+        }
+
+        String lastElement = elements.get(elements.size() - 1);
+        if (lastElement.equals("(")) {
+            return false;
+        } else if (lastElement.equals(")")) {
+            if (-- leftMinusRight < 0) {
+                return false;
+            }
+        } else if (isNumberLike(lastElement) && ! isNumber(lastElement)) {
+            return false;
+        }
+
+        // 检查边界符号
+        if (isOperator(elements.get(0)) || isOperator(elements.get(elements.size() - 1))) {
+            return false;
+        }
+
+        addParenNum = leftMinusRight;
+        return true;
     }
 
     private List<String> addZeroAndMulOp(List<String> elements) {
@@ -302,5 +578,13 @@ public class Resolver {
 
     private boolean isNumberLike(String expr) {
         return (!isConstant(expr)) && (!isFunction(expr)) && (!isOperator(expr)) && (!isParen(expr));
+    }
+
+    private boolean isNumber(String expr) {
+        int parts = StringUtils.splitByWholeSeparatorPreserveAllTokens(expr, ".").length;
+        if (parts == 1 || (parts == 2 && ! expr.equals("."))) {
+            return true;
+        }
+        return false;
     }
 }

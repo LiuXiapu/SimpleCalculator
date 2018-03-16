@@ -98,10 +98,38 @@ public class ExampleUnitTest {
         printList(elements);
     }
 
+    @Test
+    public void testIsNumber() {
+        String numberLike = ".";
+        String[] result = StringUtils.splitByWholeSeparatorPreserveAllTokens(numberLike, ".");
+        int resultLength = result.length;
+
+        System.out.println(resultLength);
+    }
+
     private void printList(List<? extends Object> objects) {
         for (Object object: objects) {
             System.out.print(object.toString() + "  ");
         }
         System.out.println();
+    }
+
+    @Test
+    public void testSubList() {
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        printList(list.subList(1, 2));
+
+    }
+
+    @Test
+    public void testFunction() {
+        System.out.println(Math.log(Math.E));
     }
 }

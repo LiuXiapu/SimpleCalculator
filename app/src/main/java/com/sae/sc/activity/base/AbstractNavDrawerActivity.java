@@ -61,7 +61,7 @@ public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivit
                 startIntent(intent);
                 break;
             case R.id.nav_about:
-                Toast.makeText(this, "目前为空", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "包萝万箱", Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -109,6 +109,7 @@ public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivit
             @Override
             public void run() {
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         }, 100);
     }
