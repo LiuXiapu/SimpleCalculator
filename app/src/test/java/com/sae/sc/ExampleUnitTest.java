@@ -15,7 +15,15 @@ public class ExampleUnitTest {
 
     @Test
     public void testResolver() {
-        String expression = "";
+        String expression = "3+5+6";
         System.out.println(Resolver.resolveFromString(expression));
+    }
+
+    @Test
+    public void testTokenizeString() {
+        String expression = "1a2bc";
+        for (String a: expression.split("a|b")) {
+            System.out.println(a);
+        }
     }
 }
