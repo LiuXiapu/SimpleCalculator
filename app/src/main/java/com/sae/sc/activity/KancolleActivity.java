@@ -37,7 +37,7 @@ public class KancolleActivity extends AbstractNavDrawerActivity
     float[] grade_rates;
     int[] sea_exps;
 
-
+    int[] lv_exps;
 
     private int nowLv;
     private int targetLv;
@@ -155,6 +155,14 @@ public class KancolleActivity extends AbstractNavDrawerActivity
 
         sea_exps = getResources().getIntArray(R.array.exps);
         grade_rates = new float[]{1.2F, 1.0F, 1.0F, 0.8F, 0.7F};
+
+        int[] lv_exps = {
+                0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500,
+                5500, 6600, 7800, 9100, 10500, 12000, 13600, 15300, 17100, 19000,
+                21000, 23100, 25300, 27600, 30000, 32500, 35100, 37800, 40600, 43500,
+                46500, 49600, 52800, 56100, 59500, 63000, 66600, 70300, 74100, 78000,
+                82000, 86100, 90300, 94600, 99000, 103500, 108100, 112800, 117600, 122500,
+                127500, 132700, 138100, 143700, 149500, 155000, 161700, 168100, 174700, 181500, };
     }
 
     @Override
