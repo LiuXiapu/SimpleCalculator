@@ -1,23 +1,24 @@
 package com.sae.sc.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import org.wltea.expression.ExpressionEvaluator;
 
 
 public class Evaluator {
     public static final String TAG = "Evaluator";
-
     public static final int INPUT_EMPTY = 2;
 
-    private Evaluator() {
+    private Resolver resolver;
+
+    private Evaluator(Context context) {
+        resolver = Resolver.newInstance(context);
     }
 
     @NonNull
-    public static Evaluator newInstance() {
-        return new Evaluator();
+    public static Evaluator newInstance(Context context) {
+        return new Evaluator(context);
     }
 
     public void evaluate(String expression, EvaluateCallback callback) {
@@ -27,7 +28,7 @@ public class Evaluator {
             return;
         }
 
-        String result = Resolver.resolveFromString(expression);
+        String result = resolver.resolveFromString(expression);
 
         if (result.startsWith("Error")) {
             callback.onCalculateError(result);

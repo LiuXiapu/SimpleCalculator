@@ -87,7 +87,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_calculator);
 
-        mEvaluator = Evaluator.newInstance();
+        mEvaluator = Evaluator.newInstance(this);
 
         initView();
         initInputDisplay();

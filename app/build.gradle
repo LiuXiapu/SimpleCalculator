@@ -35,5 +35,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
-    implementation files('libs/IKExpression2.1.2.jar')
+
+    implementation 'org.apache.commons:commons-lang3:3.4'
 }

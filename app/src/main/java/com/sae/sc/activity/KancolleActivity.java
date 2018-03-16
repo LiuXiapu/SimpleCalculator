@@ -39,8 +39,8 @@ public class KancolleActivity extends AbstractNavDrawerActivity
 
     int[] lv_exps;
 
-    private int nowLv;
-    private int targetLv;
+    private int nowLv = 1;
+    private int targetLv = 1;
 
     /**
      *
@@ -52,13 +52,13 @@ public class KancolleActivity extends AbstractNavDrawerActivity
      *
      *  @desc 胜利程度补正，S A B C D
      */
-    private float rate_correction;
+    private float rate_correction = 1.2F;
 
     /**
      *
      *  @desc 不同海域经验值
      */
-    private int sea_exp;
+    private int sea_exp = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +162,20 @@ public class KancolleActivity extends AbstractNavDrawerActivity
                 21000, 23100, 25300, 27600, 30000, 32500, 35100, 37800, 40600, 43500,
                 46500, 49600, 52800, 56100, 59500, 63000, 66600, 70300, 74100, 78000,
                 82000, 86100, 90300, 94600, 99000, 103500, 108100, 112800, 117600, 122500,
-                127500, 132700, 138100, 143700, 149500, 155000, 161700, 168100, 174700, 181500, };
+                127500, 132700, 138100, 143700, 149500, 155000, 161700, 168100, 174700, 181500,
+                188500, 195800, 203400, 211300, 219500, 228000, 236800, 245900, 255300, 265000,
+                275000, 285400, 296200, 307400, 319000, 331000, 343400, 356200, 369400, 383000,
+                397000, 411500, 426500, 442000, 458000, 474500, 491000, 509000, 527000, 545500,
+                564500, 584500, 606500, 631500, 661500, 701500, 761500, 851500, 1000000, 1000000,
+                1010000, 1011000, 1013000, 1016000, 1020000, 1025000, 1031000, 1038000, 1046000, 1055000,
+                1065000, 1077000, 1091000, 1107000, 1125000, 1145000, 1168000, 1194000, 1223000, 1255000,
+                1290000, 1329000, 1372000, 1419000, 1470000, 1525000, 1584000, 1647000, 1714000, 1785000,
+                1860000, 1940000, 2025000, 2115000, 2210000, 2310000, 2415000, 2525000, 2640000, 2760000,
+                2887000, 3021000, 3162000, 3310000, 3465000, 3628000, 3799000, 3978000, 4165000, 4360000,
+                4564000, 4777000, 4999000, 5230000, 5470000, 5720000, 5780000, 5860000, 5970000, 6120000,
+                6320000, 6580000, 6910000, 7320000, 7820000
+        };
+        this.lv_exps = lv_exps;
     }
 
     @Override
@@ -187,12 +200,14 @@ public class KancolleActivity extends AbstractNavDrawerActivity
     }
 
     private void calculateExp() {
-        int nowExp = 0;
-        int targetExp = 0;
-        int seaExp = this.sea_exp;
-        int attackTimes = 0;
-        int remainExp = 0;
-
+        int nowExp = lv_exps[nowLv - 1];
+        int targetExp = lv_exps[targetLv - 1];
+        int seaExp = (int) (this.sea_exp * correction * rate_correction);
+        int remainExp = targetExp - nowExp;
+        if (remainExp < 0 ) {
+            remainExp = 0;
+        }
+        int attackTimes = (int) Math.floor(remainExp / seaExp);
 
         reviseUI(nowExp, targetExp, seaExp, attackTimes, remainExp);
     }

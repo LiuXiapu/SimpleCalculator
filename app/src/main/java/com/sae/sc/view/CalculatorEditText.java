@@ -32,18 +32,12 @@ public class CalculatorEditText extends ResizingEditText implements ICalculatorI
 
     public void invalidateKeywords(Context context) {
         mKeywords = Arrays.asList(
-                context.getString(R.string.fun_arcsin) + "(",
-                context.getString(R.string.fun_arccos) + "(",
-                context.getString(R.string.fun_arctan) + "(",
                 context.getString(R.string.arcsin) + "(",
                 context.getString(R.string.arccos) + "(",
                 context.getString(R.string.arctan) + "(",
                 context.getString(R.string.fun_sin) + "(",
                 context.getString(R.string.fun_cos) + "(",
                 context.getString(R.string.fun_tan) + "(",
-                context.getString(R.string.sin) + "(",
-                context.getString(R.string.cos) + "(",
-                context.getString(R.string.tan) + "(",
                 context.getString(R.string.fun_arccsc) + "(",
                 context.getString(R.string.fun_arcsec) + "(",
                 context.getString(R.string.fun_arccot) + "(",
