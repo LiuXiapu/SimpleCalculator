@@ -22,6 +22,27 @@ public class ButtonID {
 
                 R.id.btn_equal,
 
+                R.id.btn_sin,
+                R.id.btn_cos,
+                R.id.btn_tan,
+                R.id.btn_arcsin,
+                R.id.btn_arccos,
+                R.id.btn_arctan,
+
+                R.id.btn_ln,
+                R.id.btn_power,
+                R.id.btn_exp,
+
+                R.id.btn_log,
+                R.id.btn_factorial,
+                R.id.btn_sqrt,
+
+                R.id.btn_left_paratheses,
+                R.id.btn_right_parathese,
+                R.id.btn_pi,
+                R.id.btn_var_e
+
+
                 /**
                 R.id.btn_clear,
                 R.id.btn_delete,

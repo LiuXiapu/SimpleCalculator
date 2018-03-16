@@ -1,5 +1,6 @@
 package com.sae.sc.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -119,7 +120,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         Log.i("main", "onInsert()");
         if (mCalculatorState == CalculatorState.ERROR) {
             setState(CalculatorState.INPUT);
-            mInputDisplay.clear();
+            mMathView.setText(null);
         }
         mInputDisplay.insert(text);
     }
@@ -156,7 +157,11 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     @Override
     public void onError(String errorResourceId) {
         Log.i("main", "onError()");
-        Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
+
+        setState(CalculatorState.ERROR);
+
+        mMathView.setText(errorResourceId);
+        mMathView.setTextColor(Color.RED);
     }
 
     private void setState(CalculatorState state) {
@@ -180,11 +185,15 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     }
 
     @Override
-    public void onCalculateError(Exception e) {
+    public void onCalculateError(@Nullable Exception e) {
         if (mCalculatorState == CalculatorState.INPUT) {
             mMathView.setText("");
         } else if (mCalculatorState == CalculatorState.EVALUATE) {
-            onError("Error: " + e.getMessage());
+            if (e != null) {
+                onError("Error: " + e.getMessage());
+            } else {
+                onError("Error");
+            }
         }
     }
 

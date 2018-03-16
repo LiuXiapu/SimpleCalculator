@@ -23,6 +23,7 @@ public class Evaluator {
     public void evaluate(String expression, EvaluateCallback callback) {
         if (expression.isEmpty()) {
             callback.onEvaluated(expression, "", INPUT_EMPTY);
+            //callback.onCalculateError(null);
             return;
         }
 

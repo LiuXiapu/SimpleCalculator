@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_pad_more_advance"
     android:orientation="vertical"
-    android:weightSum="6">
+    android:weightSum="5">
 
     <TextView
         android:layout_width="match_parent"
@@ -22,8 +22,31 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="3">
 
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/btn_sin"
+            style="?buttonAdvanceStyle"
+            android:text="@string/sin" />
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/btn_cos"
+            style="?buttonAdvanceStyle"
+            android:text="@string/cos" />
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/btn_tan"
+            style="?buttonAdvanceStyle"
+            android:text="@string/tan" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="3">
         <com.sae.sc.view.CalcButton
             android:id="@+id/btn_arcsin"
             style="?buttonAdvanceStyle"
@@ -38,19 +61,8 @@
             android:id="@+id/btn_arctan"
             style="?buttonAdvanceStyle"
             android:text="@string/arctan" />
-        <!--<com.example.duy. calculator.view.Padcom.duy.calculator.view.CalcButtonBasicCalculator-->
-        <!--android:id="@+id/btnTable"-->
-        <!--style="?buttonAdvanceStyle"-->
-        <!--android:layout_weight="1"-->
-        <!--android:text="@string/table"/>-->
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_log"
-            style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/log10" />
     </LinearLayout>
+
 
 
     <LinearLayout
@@ -58,81 +70,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="4">
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_sinh"
-            style="?buttonAdvanceStyle"
-            android:text="@string/sinh" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_cosh"
-            style="?buttonAdvanceStyle"
-            android:text="@string/cosh" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_tanh"
-            style="?buttonAdvanceStyle"
-            android:text="@string/tanh" />
-        <!--<com.example.duy. calculator.view.Padcom.duy.calculator.view.CalcButtonBasicCalculator-->
-        <!--android:id="@+id/btnTable"-->
-        <!--style="?buttonAdvanceStyle"-->
-        <!--android:layout_weight="1"-->
-        <!--android:text="@string/table"/>-->
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_exp"
-            style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/exp" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="4">
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_arcsinh"
-            style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/arcsinh" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_arccosh"
-            style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/arccosh" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_arctanh"
-            style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/arctanh" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_mod"
-            style="?buttonAdvanceStyle"
-            android:text="@string/mod" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="3">
 
         <com.sae.sc.view.CalcButton
             android:id="@+id/btn_ln"
@@ -140,27 +78,18 @@
             android:text="@string/ln" />
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_abs"
+            android:id="@+id/btn_power"
             style="?buttonAdvanceStyle"
-            android:text="@string/abs" />
+            android:text="@string/power" />
 
         <com.sae.sc.view.CalcButton
-            style="?buttonAdvanceStyle"
-            android:id="@+id/btn_var_e"
-            android:text="@string/constant_e" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_percent"
-            style="?buttonAdvanceStyle"
-            android:text="@string/percentage" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_sign"
+            android:id="@+id/btn_exp"
             style="?buttonAdvanceStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/sgn" />
+            android:text="@string/exp" />
+
     </LinearLayout>
 
 
@@ -169,49 +98,25 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="3">
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_i"
+            android:id="@+id/btn_log"
             style="?buttonAdvanceStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/i" />
+            android:text="@string/log10" />
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_gcd"
+            android:id="@+id/btn_factorial"
             style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/gcd" />
+            android:text="@string/factorial" />
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_lcm"
+            android:id="@+id/btn_sqrt"
             style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/lcm" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_combi"
-            style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/binomial" />
-
-        <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_perm"
-            style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/permutations" />
-
-
+            android:text="@string/sqrt_sym" />
     </LinearLayout>
 
 
@@ -223,36 +128,27 @@
         android:weightSum="4">
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_ceil"
+            android:id="@+id/btn_left_paratheses"
             style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/ceil" />
+            android:text="@string/leftParen" />
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_floor"
+            android:id="@+id/btn_right_parathese"
             style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/floor" />
+            android:text="@string/rightParen" />
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_min"
+            android:id="@+id/btn_pi"
             style="?buttonAdvanceStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/min" />
+            android:text="@string/pi_symbol" />
 
         <com.sae.sc.view.CalcButton
-            android:id="@+id/btn_max"
             style="?buttonAdvanceStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/max" />
+            android:id="@+id/btn_var_e"
+            android:text="@string/constant_e" />
     </LinearLayout>
 
 
