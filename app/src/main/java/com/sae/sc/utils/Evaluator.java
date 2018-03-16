@@ -27,20 +27,20 @@ public class Evaluator {
             return;
         }
 
-        Object result;
-        try {
-            //result = ExpressionEvaluator.evaluate(expression);
-            result = expression;
-            callback.onEvaluated(expression, result.toString(), Activity.RESULT_OK);
-        } catch (Exception e) {
-            callback.onCalculateError(e);
+        String result = Resolver.resolveFromString(expression);
+
+        if (result.startsWith("Error")) {
+            callback.onCalculateError(result);
+        } else {
+            callback.onEvaluated(expression, result, Activity.RESULT_OK);
         }
+
     }
 
 
     public interface EvaluateCallback {
         void onEvaluated(String expr, String result, int errorResourceId);
 
-        void onCalculateError(Exception e);
+        void onCalculateError(String errorString);
     }
 }

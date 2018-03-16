@@ -25,6 +25,8 @@ import com.sae.sc.utils.Evaluator;
 import com.sae.sc.view.CalculatorEditText;
 import com.sae.sc.view.MathFormulaView;
 
+import static com.sae.sc.utils.Evaluator.INPUT_EMPTY;
+
 public class BasicCalculatorActivity extends AbstractCalculatorActivity
         implements KeyboardListener, TextWatcher, Evaluator.EvaluateCallback {
     public static final String TAG = BasicCalculatorActivity.class.getSimpleName();
@@ -68,6 +70,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
      */
     Evaluator mEvaluator;
 
+    Integer defaultColor;
+
     boolean isEqualPressed = false;
 
     @Override
@@ -91,6 +95,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         mInputDisplay.setText(null);
         mMathView.setText(null);
 
+        defaultColor = mMathView.getCurrentTextColor();
         //实时计算输入的结果
         mInputDisplay.addTextChangedListener(this);
     }
@@ -121,6 +126,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
         if (mCalculatorState == CalculatorState.ERROR) {
             setState(CalculatorState.INPUT);
             mMathView.setText(null);
+
+            mMathView.setTextColor(defaultColor);
         }
         mInputDisplay.insert(text);
     }
@@ -129,6 +136,10 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     public void onDelete() {
         mInputDisplay.backspace();
         setState(CalculatorState.INPUT);
+
+        if (mInputDisplay.getEditableText().length() == 0) {
+            mMathView.setText(null);
+        }
     }
 
     @Override
@@ -181,19 +192,17 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
                     mMathView.setText(null);
                 }
             }
+        } else if (errorResourceId == INPUT_EMPTY) {
+            setState(CalculatorState.INPUT);
         }
     }
 
     @Override
-    public void onCalculateError(@Nullable Exception e) {
+    public void onCalculateError(String errorString) {
         if (mCalculatorState == CalculatorState.INPUT) {
             mMathView.setText("");
         } else if (mCalculatorState == CalculatorState.EVALUATE) {
-            if (e != null) {
-                onError("Error: " + e.getMessage());
-            } else {
-                onError("Error");
-            }
+            onError(errorString);
         }
     }
 
