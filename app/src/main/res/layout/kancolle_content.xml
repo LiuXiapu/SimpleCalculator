@@ -24,10 +24,16 @@
             android:layout_weight="15"
             android:text="舰娘"
             android:gravity="center_vertical"/>
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="10" />
         <Spinner
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="85" />
+            android:id="@+id/kanmusu_select"
+            android:entries="@array/kanmusu"
+            android:layout_weight="75" />
 
     </LinearLayout>
 
@@ -43,14 +49,19 @@
             android:text="现在等级"
             android:gravity="center_vertical"/>
         <Spinner
+            android:id="@+id/now_lv_select"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="35" />
         <TextView
+            android:id="@+id/now_exp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="35"
             android:text="test"
+            android:background="@color/blue_grey_800"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"/>
     </LinearLayout>
 
@@ -66,13 +77,18 @@
             android:text="目标等级"
             android:gravity="center_vertical"/>
         <Spinner
+            android:id="@+id/target_lv_select"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="35" />
         <TextView
+            android:id="@+id/target_exp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="35"
+            android:background="@color/blue_grey_800"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:text="test"
             android:gravity="center"/>
     </LinearLayout>
@@ -89,6 +105,7 @@
             android:text="海域"
             android:gravity="center_vertical"/>
         <Spinner
+            android:id="@+id/sea_select"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="35" />
@@ -99,6 +116,7 @@
             android:text="评价"
             android:gravity="center"/>
         <Spinner
+            android:id="@+id/rate_select"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="35" />
@@ -110,12 +128,14 @@
         android:layout_weight="100"
         android:weightSum="100">
         <CheckBox
+            android:id="@+id/flagship_select"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="50"
             android:gravity="center_vertical"
             android:text="旗舰"/>
         <CheckBox
+            android:id="@+id/mvp_select"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="50"
@@ -139,9 +159,13 @@
             android:layout_width="0dp"
             android:layout_weight="10" />
         <TextView
+            android:id="@+id/sea_exp"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="20"
+            android:background="@color/blue_grey_800"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:text="test"
             android:gravity="center"/>
         <TextView
@@ -151,10 +175,15 @@
             android:text="*"
             android:gravity="center"/>
         <TextView
+            android:id="@+id/attack_times"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="20"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:text="test"
+            android:background="@color/blue_grey_800"
+            android:textColor="@color/white"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -175,10 +204,14 @@
             android:layout_width="0dp"
             android:layout_weight="10" />
         <TextView
+            android:id="@+id/next_lv_exp"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="40"
             android:text="test"
+            android:background="@color/blue_grey_800"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"/>
     </LinearLayout>
 

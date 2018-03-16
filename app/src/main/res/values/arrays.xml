@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rates">
+        <item>S</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+
+    <string-array name="seas">
+        <item>1-1</item>
+        <item>1-2</item>
+        <item>1-3</item>
+        <item>1-4</item>
+    </string-array>
+
+    <integer-array name="exps">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <string-array name="kanmusu">
+        <item>瑞鹤</item>
+        <item>翔鹤</item>
+    </string-array>
+</resources>
