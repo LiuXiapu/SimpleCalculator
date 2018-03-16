@@ -28,7 +28,8 @@ public class Evaluator {
 
         Object result;
         try {
-            result = ExpressionEvaluator.evaluate(expression);
+            //result = ExpressionEvaluator.evaluate(expression);
+            result = expression;
             callback.onEvaluated(expression, result.toString(), Activity.RESULT_OK);
         } catch (Exception e) {
             callback.onCalculateError(e);

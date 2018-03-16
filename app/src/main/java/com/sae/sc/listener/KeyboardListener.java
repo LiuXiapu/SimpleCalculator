@@ -9,5 +9,7 @@ public interface KeyboardListener {
 
     void onEqual();
 
+    void onEqual(boolean isPressEqual);
+
     void onError(final String errorResourceId);
 }

@@ -29,16 +29,26 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical"
                 android:textSize="30sp"
+                android:textAlignment="viewEnd"
+                android:gravity="bottom"
                 tools:text="1+1+3+4+5/12312" />
 
-            <com.sae.sc.view.MathFormulaView
+            <TextView
                 android:id="@+id/math_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:layout_weight="50"
                 android:weightSum="1"
-                app:engine="KaTeX" />
+                android:textAlignment="viewEnd"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                tools:text="1+1+3+4+5/"/>
         </LinearLayout>
 
         <FrameLayout

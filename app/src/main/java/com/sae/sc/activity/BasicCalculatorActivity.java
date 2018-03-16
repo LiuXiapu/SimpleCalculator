@@ -8,10 +8,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sae.sc.R;
@@ -23,7 +25,7 @@ import com.sae.sc.view.CalculatorEditText;
 import com.sae.sc.view.MathFormulaView;
 
 public class BasicCalculatorActivity extends AbstractCalculatorActivity
-        implements KeyboardListener, View.OnKeyListener, Evaluator.EvaluateCallback {
+        implements KeyboardListener, TextWatcher, Evaluator.EvaluateCallback {
     public static final String TAG = BasicCalculatorActivity.class.getSimpleName();
 
     /**
@@ -46,7 +48,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
      *  @id math_view
      *  @desc 多重嵌套，暂定为结果输出框
      */
-    MathFormulaView mMathView;
+    TextView mMathView;
     /**
      *
      *  @lcoation activity_basic_calculator -->  abs_bar_content -> abs_content -> display_panel
@@ -65,6 +67,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
      */
     Evaluator mEvaluator;
 
+    boolean isEqualPressed = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,14 +84,14 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     private void initView() {
         mWholePanelDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mInputDisplay = (CalculatorEditText) findViewById(R.id.txtDisplay);
-        mMathView = (MathFormulaView) findViewById(R.id.math_view);
+        mMathView = (TextView) findViewById(R.id.math_view);
         mDisplayForeground = (ViewGroup) findViewById(R.id.the_clear_animation);
 
         mInputDisplay.setText(null);
         mMathView.setText(null);
 
         //实时计算输入的结果
-        mInputDisplay.setOnKeyListener(this);
+        mInputDisplay.addTextChangedListener(this);
     }
 
     private void initInputDisplay() {
@@ -112,7 +116,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     @Override
     public void onInsert(String text) {
-        if (mCalculatorState == CalculatorState.ERROR || mCalculatorState == CalculatorState.RESULT) {
+        Log.i("main", "onInsert()");
+        if (mCalculatorState == CalculatorState.ERROR) {
             setState(CalculatorState.INPUT);
             mInputDisplay.clear();
         }
@@ -122,18 +127,27 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     @Override
     public void onDelete() {
         mInputDisplay.backspace();
+        setState(CalculatorState.INPUT);
     }
 
     @Override
     public void onClear() {
         mInputDisplay.clear();
-
+        mMathView.setText(null);
+        setState(CalculatorState.INPUT);
     }
 
     @Override
     public void onEqual() {
+        onEqual(false);
+    }
+
+    @Override
+    public void onEqual(boolean isPressEqual) {
+        isEqualPressed  = isPressEqual;
+
+        Log.i("main", "onEqual()");
         String text = mInputDisplay.getCleanText();
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         setState(CalculatorState.EVALUATE);
 
         mEvaluator.evaluate(text, BasicCalculatorActivity.this);
@@ -141,22 +155,8 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     @Override
     public void onError(String errorResourceId) {
+        Log.i("main", "onError()");
         Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            //小键盘
-            case KeyEvent.KEYCODE_NUMPAD_ENTER:
-            case KeyEvent.KEYCODE_ENTER:
-                //松开按钮
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    onEqual();
-                }
-                return true;
-        }
-        return false;
     }
 
     private void setState(CalculatorState state) {
@@ -165,20 +165,15 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     @Override
     public void onEvaluated(String expr, String result, int errorResourceId) {
-        System.out.println(errorResourceId);
-        System.out.println(RESULT_OK);
-        if (errorResourceId == RESULT_OK) {
-            System.out.println(mCalculatorState.name());
+        Log.i("main", "onEvaluated() " + mCalculatorState.name());
 
+        if (errorResourceId == RESULT_OK) {
             if (mCalculatorState == CalculatorState.EVALUATE) {
-                System.out.println(1);
                 onResult(result);
-            } else if (mCalculatorState == CalculatorState.INPUT) {
-                System.out.println(2);
-                if (result == null) {
-                    mMathView.setText("");
-                } else {
-                    mMathView.setText(result);
+                setState(CalculatorState.RESULT);
+
+                if (isEqualPressed) {
+                    mMathView.setText(null);
                 }
             }
         }
@@ -195,6 +190,22 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
 
     public void onResult(final String result) {
         mMathView.setText(result);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        onEqual();
+        setState(CalculatorState.INPUT);
     }
 
     public enum CalculatorState {

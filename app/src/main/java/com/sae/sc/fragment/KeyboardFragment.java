@@ -81,7 +81,6 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
 
 
     @Override
-    @SuppressWarnings("UnCompleted")
     public boolean onLongClick(View view) {
         if (mListener == null) {
             return false;
@@ -105,7 +104,7 @@ public class KeyboardFragment extends Fragment implements View.OnClickListener, 
                 mListener.onDelete();
                 break;
             case R.id.btn_equal:
-                mListener.onEqual();
+                mListener.onEqual(true);
                 break;
             default:
                 if (view instanceof CalcButton) {

@@ -35,7 +35,7 @@
     <!--<string name="mul" translatable="false">×</string>-->
     <string name="mul" translatable="false">*</string>
     <string name="plus" translatable="false">+</string>
-    <string name="minus" translatable="false">−</string>
+    <string name="minus" translatable="false">-</string>
     <string name="equal" translatable="false">=</string>
     <string name="sin" translatable="false">sin</string>
     <string name="cos" translatable="false">cos</string>
