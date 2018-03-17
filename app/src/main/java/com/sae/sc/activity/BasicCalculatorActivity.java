@@ -321,6 +321,7 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
     @Override
     public void afterTextChanged(Editable s) {
         onEqual();
+        mMathView.setTextColor(defaultColor);
         setState(CalculatorState.INPUT);
     }
 
