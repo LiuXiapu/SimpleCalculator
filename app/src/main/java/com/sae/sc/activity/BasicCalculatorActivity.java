@@ -138,6 +138,9 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
             mMathView.setText(null);
 
             mMathView.setTextColor(defaultColor);
+        } else if (mCalculatorState == CalculatorState.RESULT) {
+            mInputDisplay.clear();
+            setState(CalculatorState.INPUT);
         }
         mInputDisplay.insert(text);
     }
@@ -226,6 +229,10 @@ public class BasicCalculatorActivity extends AbstractCalculatorActivity
                 setState(CalculatorState.RESULT);
 
                 if (isEqualPressed) {
+                    mMathView.setText(null);
+                    mInputDisplay.clear();
+                    mInputDisplay.insert(result);
+                    setState(CalculatorState.RESULT);
                     mMathView.setText(null);
                 }
             }
