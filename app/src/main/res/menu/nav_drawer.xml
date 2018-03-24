@@ -12,6 +12,15 @@
             android:id="@+id/nav_kancolle"
             android:icon="@drawable/ic_menu_gallery"
             android:title="游戏计算器" />
+
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="阴阳历" />
+        <item
+            android:id="@+id/nav_bit"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="进制转换" />
     </group>
 
     <item android:title="其他">

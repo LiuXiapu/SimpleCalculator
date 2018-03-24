@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/abs_bar_content_kancolle"
+        layout="@layout/abs_bar_content_calendar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

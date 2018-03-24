@@ -16,5 +16,7 @@
 
     <string name="calculator_title">科学计算器</string>
     <string name="kancolle_title">砍口累计算器</string>
+    <string name="calendar_title">阴阳历</string>
+
 
 </resources>

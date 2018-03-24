@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.sae.sc.R;
 import com.sae.sc.activity.BasicCalculatorActivity;
+import com.sae.sc.activity.CalendarActivity;
 import com.sae.sc.activity.KancolleActivity;
+import com.sae.sc.utils.CalendarUtil;
 
 public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,6 +62,14 @@ public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivit
                 intent = new Intent(getApplicationContext(), KancolleActivity.class);
                 startIntent(intent);
                 break;
+            case R.id.nav_calendar:
+                intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                startIntent(intent);
+                break;
+            case R.id.nav_bit:
+                Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
+                break;
+
             case R.id.nav_about:
                 Toast.makeText(this, "包萝万箱", Toast.LENGTH_SHORT).show();
                 break;

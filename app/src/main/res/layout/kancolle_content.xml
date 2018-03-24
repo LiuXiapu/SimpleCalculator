@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.base.AbstractNavDrawerActivity"
-    tools:showIn="@layout/abs_bar_content_2"
+    tools:showIn="@layout/abs_bar_content_kancolle"
     android:orientation="vertical"
     android:weightSum="1000"
     android:layout_marginLeft="15dp"

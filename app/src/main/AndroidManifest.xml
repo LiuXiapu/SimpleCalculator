@@ -16,14 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.BasicCalculatorActivity"
+        <activity
+            android:name=".activity.BasicCalculatorActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity android:name=".activity.KancolleActivity"
+        <activity
+            android:name=".activity.KancolleActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activity.CalendarActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>
