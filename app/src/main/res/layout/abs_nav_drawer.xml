@@ -31,6 +31,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="刘夏璞 孙吴军" />
+        android:text="猴子：孙吴军 刘夏璞" />
 
 </LinearLayout>

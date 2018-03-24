@@ -45,7 +45,7 @@ public class CalendarActivity extends AbstractNavDrawerActivity
         super.onResume();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setCheckedItem(R.id.nav_calculator);
+        navigationView.setCheckedItem(R.id.nav_calendar);
     }
 
     @Override

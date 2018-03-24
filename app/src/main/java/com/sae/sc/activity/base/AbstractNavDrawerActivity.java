@@ -67,7 +67,7 @@ public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivit
                 startIntent(intent);
                 break;
             case R.id.nav_bit:
-                Toast.makeText(this, "未实现", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "没有技术挑战就没做（手动再见）", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_about:
