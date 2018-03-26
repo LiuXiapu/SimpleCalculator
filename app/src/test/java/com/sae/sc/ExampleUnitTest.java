@@ -7,8 +7,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -131,5 +133,20 @@ public class ExampleUnitTest {
     @Test
     public void testFunction() {
         System.out.println(Math.log(Math.E));
+    }
+
+    @Test
+    public void testBaseConvertion() {
+        Map<String, Integer> baseConvertionMap = new HashMap<>(4);
+        baseConvertionMap.put("hex", 16);
+        baseConvertionMap.put("dec", 10);
+        baseConvertionMap.put("oct", 8);
+        baseConvertionMap.put("bin", 2);
+
+        String expression = "123";
+        String fromBase = "hex";
+        String toBase = "dec";
+
+
     }
 }

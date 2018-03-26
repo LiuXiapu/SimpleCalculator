@@ -36,7 +36,7 @@ import com.sae.sc.view.RevealView;
 import static com.sae.sc.utils.Evaluator.INPUT_EMPTY;
 
 public class BasicCalculatorActivity extends AbstractCalculatorActivity
-        implements KeyboardListener, TextWatcher,Evaluator.EvaluateCallback {
+        implements KeyboardListener, TextWatcher, Evaluator.EvaluateCallback {
     public static final String TAG = BasicCalculatorActivity.class.getSimpleName();
 
     /**

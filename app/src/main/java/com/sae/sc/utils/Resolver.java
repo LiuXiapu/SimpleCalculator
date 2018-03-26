@@ -7,10 +7,13 @@ import com.sae.sc.R;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Sae on 2018/3/16.
@@ -586,5 +589,23 @@ public class Resolver {
             return true;
         }
         return false;
+    }
+
+
+
+    public String baseConvertion(String expression, String fromBase, String toBase) {
+        Map<String, Integer> baseConvertionMap = new HashMap<>(4);
+        baseConvertionMap.put("hex", 16);
+        baseConvertionMap.put("dec", 10);
+        baseConvertionMap.put("oct", 8);
+        baseConvertionMap.put("bin", 2);
+
+        try {
+            return new BigInteger(expression, baseConvertionMap.get(fromBase.toLowerCase())).toString(baseConvertionMap.get(toBase.toLowerCase())).toUpperCase();
+            //return Integer.toString(Integer.parseInt(expression, baseConvertionMap.get(fromBase.toLowerCase())), baseConvertionMap.get(toBase.toLowerCase()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error: Unknown Error";
+        }
     }
 }

@@ -24,7 +24,11 @@
             android:name=".activity.KancolleActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.CalendarActivity"
+        <activity
+            android:name=".activity.CalendarActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activity.BaseCalculatorActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateAlwaysHidden" />
     </application>

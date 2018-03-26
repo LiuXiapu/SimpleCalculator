@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.base.AbstractNavDrawerActivity"
+    tools:showIn="@layout/abs_bar_content_2"
+    android:orientation="vertical"
+    android:weightSum="700" >
+
+    <include
+        layout="@layout/display_panel_2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="150" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="550">
+
+        <FrameLayout
+            android:id="@+id/container_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </FrameLayout>
+
+</LinearLayout>

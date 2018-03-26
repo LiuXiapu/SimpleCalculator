@@ -1,12 +1,6 @@
 package com.sae.sc.listener;
 
-public interface KeyboardListener {
-    void onInsert(String text);
-
-    void onDelete();
-
-    void onClear();
-
+public interface KeyboardListener extends BaseKeyboardListener {
     void onEqual();
 
     void onEqual(boolean isPressEqual);

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.sae.sc.R;
+import com.sae.sc.activity.BaseCalculatorActivity;
 import com.sae.sc.activity.BasicCalculatorActivity;
 import com.sae.sc.activity.CalendarActivity;
 import com.sae.sc.activity.KancolleActivity;
@@ -66,8 +67,9 @@ public abstract class AbstractNavDrawerActivity extends AbstractAppCompatActivit
                 intent = new Intent(getApplicationContext(), CalendarActivity.class);
                 startIntent(intent);
                 break;
-            case R.id.nav_bit:
-                Toast.makeText(this, "没有技术挑战就没做（手动再见）", Toast.LENGTH_SHORT).show();
+            case R.id.nav_base:
+                intent = new Intent(getApplicationContext(), BaseCalculatorActivity.class);
+                startIntent(intent);
                 break;
 
             case R.id.nav_about:

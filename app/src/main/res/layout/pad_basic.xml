@@ -105,12 +105,12 @@
                 android:layout_width="match_parent"/>
 
             <ImageButton
-                android:id="@+id/btn_delete"
-                style="?buttonClearStyle"
-                android:contentDescription="@string/delete"
-                android:text="@string/delete"
-                app:srcCompat="@drawable/ic_backspace_white_24dp"
-                android:layout_width="match_parent"/>
+            android:id="@+id/btn_delete"
+            style="?buttonClearStyle"
+            android:contentDescription="@string/delete"
+            android:text="@string/delete"
+            app:srcCompat="@drawable/ic_backspace_white_24dp"
+            android:layout_width="match_parent"/>
         </LinearLayout>
 
         <LinearLayout

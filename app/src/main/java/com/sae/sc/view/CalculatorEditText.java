@@ -59,7 +59,6 @@ public class CalculatorEditText extends ResizingEditText implements ICalculatorI
                 context.getString(R.string.ceil) + "(",
                 context.getString(R.string.arctanh) + "(",
                 context.getString(R.string.sum) + "(",
-                context.getString(R.string.diff) + "(",
                 context.getString(R.string.avg) + "(",
                 context.getString(R.string.vari) + "(",
                 context.getString(R.string.stdi) + "(",

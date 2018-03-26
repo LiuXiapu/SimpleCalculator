@@ -17,6 +17,10 @@
     <string name="calculator_title">科学计算器</string>
     <string name="kancolle_title">砍口累计算器</string>
     <string name="calendar_title">阴阳历</string>
+    <string name="base_title">进制转换器</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

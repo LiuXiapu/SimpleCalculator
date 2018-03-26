@@ -38,6 +38,20 @@ public class Evaluator {
 
     }
 
+    public void transfer(String expression, String fromBase, String toBase, EvaluateCallback callback) {
+        if (expression.isEmpty()) {
+            callback.onEvaluated(expression, "", INPUT_EMPTY);
+            return;
+        }
+
+        String result = resolver.baseConvertion(expression, fromBase, toBase);
+        if (result.startsWith("Error")) {
+            callback.onCalculateError(result);
+        } else {
+            callback.onEvaluated(expression, result, Activity.RESULT_OK);
+        }
+    }
+
 
     public interface EvaluateCallback {
         void onEvaluated(String expr, String result, int errorResourceId);

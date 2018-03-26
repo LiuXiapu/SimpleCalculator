@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_pad_numberic"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?colorAccent"
+            android:weightSum="4">
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/dec"
+                style="?buttonAdvanceStyle"
+                android:textStyle="bold"
+                android:text="@string/dec" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/hex"
+                style="?buttonAdvanceStyle"
+                android:textStyle="bold"
+                android:text="@string/hex" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/bin"
+                style="?buttonAdvanceStyle"
+                android:textStyle="bold"
+                android:text="@string/bin" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/oct"
+                style="?buttonAdvanceStyle"
+                android:textStyle="bold"
+                android:text="@string/oct" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="6">
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/A"
+            style="?buttonDigitStyle"
+            android:text="A" />
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/B"
+            style="?buttonDigitStyle"
+            android:text="B" />
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/C"
+            style="?buttonDigitStyle"
+            android:text="C" />
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/D"
+            style="?buttonDigitStyle"
+            android:text="@string/D" />
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/E"
+            style="?buttonDigitStyle"
+            android:text="@string/E" />
+
+        <com.sae.sc.view.CalcButton
+            android:id="@+id/F"
+            style="?buttonDigitStyle"
+            android:text="@string/F" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@color/background_pad_numberic"
+        android:orientation="vertical"
+        android:weightSum="400">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit7"
+                style="?buttonDigitStyle"
+                android:text="@string/digit7" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit8"
+                style="?buttonDigitStyle"
+                android:text="@string/digit8" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit9"
+                style="?buttonDigitStyle"
+                android:text="@string/digit9" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit0"
+                style="?buttonDigitStyle"
+                android:text="@string/digit0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit4"
+                style="?buttonDigitStyle"
+                android:text="@string/digit4" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit5"
+                style="?buttonDigitStyle"
+                android:text="@string/digit5" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit6"
+                style="?buttonDigitStyle"
+                android:text="@string/digit6" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/btn_dot"
+                style="?buttonSmallDigitStyle"
+                android:text="@string/dot" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit1"
+                style="?buttonDigitStyle"
+                android:text="@string/digit1" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit2"
+                style="?buttonDigitStyle"
+                android:text="@string/digit2" />
+
+            <com.sae.sc.view.CalcButton
+                android:id="@+id/digit3"
+                style="?buttonDigitStyle"
+                android:text="@string/digit3" />
+
+            <ImageButton
+                android:id="@+id/btn_delete"
+                style="?buttonClearStyle"
+                android:contentDescription="@string/delete"
+                android:src="@drawable/ic_backspace_white_24dp"
+                android:text="@string/delete" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
